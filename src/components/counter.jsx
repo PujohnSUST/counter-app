@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
 
     state = {
-        count: 0,
+        count: this.props.value,
         // imageUrl: 'https://picsum.photos/200'
         tags: ['JD', 'TAQUILA', 'RAM']
 
@@ -12,6 +12,8 @@ class Counter extends Component {
     styles = {
         fontSize : 15,
         fontWeight: 'bold',
+        padding:5,
+        borderRadius:5,
     }
 
     renderTags (){
@@ -28,13 +30,17 @@ class Counter extends Component {
        
     }
 
+
     render() { 
 
+
         return (
+
             <div className="container">
-              
+                {this.props.children}
                 <span style={this.styles} className={this.getBadgeClass()}>{this.formatCount()}</span>
-                <button onClick={this.handleIncrement} style={{fontSize:20}} className="btn btn-secondary btn-sm">Increment</button>
+                <button onClick={this.handleIncrement} style={{fontSize:20,marginRight:10}} className="btn btn-secondary btn-sm">Increment</button>
+                <button  onClick={() => this.props.onDelete(this.props.id)} style={this.styles} className="btn btn-danger btn-sm">Delete</button>
               
 
                {this.state.tags.length === 0 && 'please add new tags'} 
